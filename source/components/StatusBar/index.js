@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
 import Styles from './styles.m.css';
-import PropTypes from 'prop-types';
+import { Consumer } from 'components/HOC/withProfile';
 
 class StatusBar extends Component {
     render() {
-        const { avatar, currentUserFirstName, currentUserLastName } = this.props;
-
         return (
-            <section className = { Styles.statusBar }>
-                <button>
-                    <img src = { avatar } />
-                    <span>{currentUserFirstName}</span>
-                    &nbsp;
-                    <span>{currentUserLastName}</span>
-                </button>
-            </section>
+            <Consumer>
+                {(context) => (
+                    <section className = { Styles.statusBar }>
+                        <button>
+                            <img src = { context.avatar } />
+                            <span>{context.currentUserFirstName}</span>
+                            &nbsp;
+                            <span>{context.currentUserLastName}</span>
+                        </button>
+                    </section>
+                )}
+            </Consumer>
         );
     }
 }
-
-StatusBar.propTypes = {
-    avatar:               PropTypes.string,
-    currentUserFirstName: PropTypes.string,
-    currentUserLastName:  PropTypes.string,
-};
 
 export default StatusBar;
