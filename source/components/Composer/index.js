@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
 import Styles from './styles.m.css';
+import PropTypes from 'prop-types';
+
 
 class Composer extends Component {
     render() {
@@ -20,5 +21,10 @@ class Composer extends Component {
         );
     }
 }
+
+Composer.propTypes = {
+    avatar:               PropTypes.string,
+    currentUserFirstName: PropTypes.string,
+};
 
 export default Composer;

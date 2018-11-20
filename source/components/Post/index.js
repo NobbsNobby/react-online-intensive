@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import Styles from './styles.m.css';
+import PropTypes from 'prop-types';
+
 
 class Post extends Component {
     render() {
@@ -16,5 +18,11 @@ class Post extends Component {
         );
     }
 }
+
+Post.propTypes = {
+    avatar:               PropTypes.string,
+    currentUserFirstName: PropTypes.string,
+    currentUserLastName:  PropTypes.string,
+};
 
 export default Post;

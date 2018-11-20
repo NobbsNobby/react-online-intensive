@@ -3,10 +3,12 @@ import Post from '../Post';
 import Composer from '../Composer';
 import Styles from './styles.m.css';
 import StatusBar from '../StatusBar';
+import PropTypes from 'prop-types';
+
 
 class Feed extends Component {
     render() {
-        const { avatar, currentUserFirstName, currentUserLastName } = this.props;
+        const { avatar, currentUserFirstName } = this.props;
 
         return (
             <section className = { Styles.feed }>
@@ -20,5 +22,11 @@ class Feed extends Component {
         );
     }
 }
+
+Feed.propTypes = {
+    avatar:               PropTypes.string,
+    currentUserFirstName: PropTypes.string,
+    currentUserLastName:  PropTypes.string,
+};
 
 export default Feed;

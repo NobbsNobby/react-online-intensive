@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Styles from './styles.m.css';
+import PropTypes from 'prop-types';
 
 class StatusBar extends Component {
     render() {
@@ -17,5 +18,11 @@ class StatusBar extends Component {
         );
     }
 }
+
+StatusBar.propTypes = {
+    avatar:               PropTypes.string,
+    currentUserFirstName: PropTypes.string,
+    currentUserLastName:  PropTypes.string,
+};
 
 export default StatusBar;
