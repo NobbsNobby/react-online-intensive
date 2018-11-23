@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
 import Styles from './styles.m.css';
-import { Consumer } from 'components/HOC/withProfile';
+import myContext from '../HOC/withProfile';
 
 class Composer extends Component {
+    static contextType = myContext;
+
     render() {
         return (
-            <Consumer>
-                {(context) => (
-                    <section className = { Styles.composer }>
-                        <img src = { context.avatar } />
-                        <form>
-                            <textarea
-                                placeholder = { `What\'s on your mind, ${
-                                    context.currentUserFirstName
-                                }?` }
-                            />
-                            <input
-                                type = 'submit'
-                                value = { 'Post' }
-                            />
-                        </form>
-                    </section>
-                )}
-            </Consumer>
+            <section className = { Styles.composer }>
+                <img src = { this.context.avatar } />
+                <form>
+                    <textarea
+                        placeholder = { `What\'s on your mind, ${
+                            this.context.currentUserFirstName
+                        }?` }
+                    />
+                    <input
+                        type = 'submit'
+                        value = { 'Post' }
+                    />
+                </form>
+            </section>
         );
     }
 }

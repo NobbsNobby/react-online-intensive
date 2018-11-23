@@ -1,8 +1,8 @@
 // Core
 import React, { Component } from 'react';
 import Feed from '../../components/Feed';
-import avatar from 'theme/assets/lisa';
-import { Provider } from 'components/HOC/withProfile';
+import avatar from '../../theme/assets/lisa.png';
+import myContext from '../../components/HOC/withProfile';
 
 const options = {
     avatar,
@@ -13,9 +13,9 @@ const options = {
 export default class App extends Component {
     render() {
         return (
-            <Provider value = { options }>
+            <myContext.Provider value = { options }>
                 <Feed/>
-            </Provider>
+            </myContext.Provider>
         );
     }
 }
