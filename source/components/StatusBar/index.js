@@ -9,7 +9,10 @@ class StatusBar extends Component {
         return (
             <section className = { Styles.statusBar }>
                 <button>
-                    <img src = { this.context.avatar }/>
+                    <img
+                        alt = 'avatar'
+                        src = { this.context.avatar }
+                    />
                     <span>{this.context.currentUserFirstName}</span>
                             &nbsp;
                     <span>{this.context.currentUserLastName}</span>

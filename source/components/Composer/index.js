@@ -8,7 +8,10 @@ class Composer extends Component {
     render() {
         return (
             <section className = { Styles.composer }>
-                <img src = { this.context.avatar } />
+                <img
+                    alt = 'avatar'
+                    src = { this.context.avatar }
+                />
                 <form>
                     <textarea
                         placeholder = { `What\'s on your mind, ${
