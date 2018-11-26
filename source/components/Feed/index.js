@@ -6,6 +6,7 @@ import StatusBar from '../StatusBar';
 import Spinner from '../Spinner';
 import moment from 'moment';
 
+
 class Feed extends Component {
     constructor(props) {
         super(props);
@@ -17,7 +18,6 @@ class Feed extends Component {
             isSpinning: true,
         };
     }
-
 
     render() {
         const { posts, isSpinning } = this.state;

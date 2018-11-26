@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import Styles from './styles.m.css';
+
+
 const portal = document.getElementById('spinner');
 
 class Spinner extends Component {
@@ -14,6 +16,5 @@ class Spinner extends Component {
         );
     }
 }
-
 
 export default Spinner;
