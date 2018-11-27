@@ -7,8 +7,7 @@ const portal = document.getElementById('spinner');
 
 class Spinner extends Component {
     render() {
-        const isSpinning = this.props;
-
+        const {isSpinning} = this.props;
 
         return createPortal(
             isSpinning && <div className = { Styles.spinner } />,

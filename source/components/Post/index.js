@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import Styles from './styles.m.css';
 import myContext from '../HOC/withProfile';
 import PropTypes from 'prop-types';
-
+import moment from 'moment';
 
 class Post extends Component {
     static contextType = myContext;
     static propTypes = {
         comment: PropTypes.string.isRequired,
-        created: PropTypes.object.isRequired,
+        created: PropTypes.number.isRequired,
     };
 
     render() {
@@ -21,7 +21,7 @@ class Post extends Component {
                     src = { this.context.avatar }
                 />
                 <a>{`${this.context.currentUserFirstName} ${this.context.currentUserLastName}`}</a>
-                <time>{created.format('MMMM D h:mm:ss a')}</time>
+                <time>{moment.unix(created).format('MMMM DD hh:mm:ss a')}</time>
                 <p>{comment}</p>
             </section>
         );
