@@ -13,13 +13,15 @@ class Feed extends Component {
         super(props);
         this.state = {
             posts: [
-                {id: '12', comment: 'Hi there', created: moment.now()},
-                {id: '45', comment: 'Второй пост', created: moment.now()},
+                {id: '12', comment: 'Hi there', created: moment.now(), likes: []},
+                {id: '45', comment: 'Второй пост', created: moment.now(), likes: []},
             ],
             isPostsFetching: false,
         };
 
         this._createPost = this._createPost.bind(this);
+        this._setPostsFetchingState = this._setPostsFetchingState.bind(this);
+        this._likePost = this._likePost.bind(this);
     }
 
     _setPostsFetchingState (state) {
@@ -35,6 +37,7 @@ class Feed extends Component {
             id:      getUniqueID(),
             created: moment.now(),
             comment,
+            likes:   [],
         };
 
         await delay(1200);
@@ -45,6 +48,36 @@ class Feed extends Component {
         }));
     }
 
+    async _likePost (id) {
+        const {currentUserFirstName, currentUserLastName} = this.props;
+
+        this._setPostsFetchingState(true);
+
+        await delay(1200);
+
+        const newPosts = this.state.posts.map((post) => {
+            if (post.id === id) {
+                return {
+                    ...post,
+                    likes: [
+                        {
+                            id:        getUniqueID(),
+                            firstName: currentUserFirstName,
+                            lastName:  currentUserLastName,
+                        },
+                    ],
+                };
+            }
+
+            return post;
+        });
+
+        this.setState({
+            posts:           newPosts,
+            isPostsFetching: false,
+        });
+    }
+
     render() {
         const { posts, isPostsFetching } = this.state;
 
@@ -52,6 +85,7 @@ class Feed extends Component {
             <Post
                 key = { post.id }
                 { ...post }
+                _likePost = { this._likePost }
             />
         ));
 

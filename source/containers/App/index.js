@@ -14,7 +14,7 @@ export default class App extends Component {
     render() {
         return (
             <myContext.Provider value = { options }>
-                <Feed/>
+                <Feed { ...options }/>
             </myContext.Provider>
         );
     }
