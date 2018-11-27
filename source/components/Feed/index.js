@@ -20,6 +20,7 @@ class Feed extends Component {
         };
 
         this._createPost = this._createPost.bind(this);
+        this._deletePost = this._deletePost.bind(this);
         this._setPostsFetchingState = this._setPostsFetchingState.bind(this);
         this._likePost = this._likePost.bind(this);
     }
@@ -46,6 +47,21 @@ class Feed extends Component {
             posts:           [ post, ...posts ],
             isPostsFetching: false,
         }));
+    }
+
+    async _deletePost (id) {
+        this._setPostsFetchingState(true);
+
+        const { posts } = this.state;
+
+        await delay(600);
+
+        const newPosts = posts.filter((post) => post.id !== id);
+
+        this.setState({
+            posts:           newPosts,
+            isPostsFetching: false,
+        });
     }
 
     async _likePost (id) {
@@ -85,6 +101,7 @@ class Feed extends Component {
             <Post
                 key = { post.id }
                 { ...post }
+                _deletePost = { this._deletePost }
                 _likePost = { this._likePost }
             />
         ));
