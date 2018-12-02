@@ -1,4 +1,3 @@
-// Core
 import React, { Component } from 'react';
 import Feed from '../../components/Feed';
 import avatar from '../../theme/assets/lisa.png';

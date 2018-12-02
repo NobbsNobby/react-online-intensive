@@ -18,15 +18,13 @@ class Post extends Component {
 
   constructor(props) {
       super(props);
-
-      this._deletePost = this._deletePost.bind(this);
   }
 
 
-  _deletePost () {
+  _deletePost = () => {
       const { _deletePost, id } = this.props;
       _deletePost(id);
-  }
+  };
 
   render() {
       const { comment, created, _likePost, likes, id } = this.props;

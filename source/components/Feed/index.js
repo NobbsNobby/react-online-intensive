@@ -18,20 +18,15 @@ class Feed extends Component {
             ],
             isPostsFetching: false,
         };
-
-        this._createPost = this._createPost.bind(this);
-        this._deletePost = this._deletePost.bind(this);
-        this._setPostsFetchingState = this._setPostsFetchingState.bind(this);
-        this._likePost = this._likePost.bind(this);
     }
 
-    _setPostsFetchingState (state) {
+    _setPostsFetchingState  = (state) => {
         this.setState({
             isPostsFetching: state,
         });
-    }
+    };
 
-    async _createPost (comment) {
+    _createPost = async (comment) => {
         this._setPostsFetchingState(true);
 
         const post = {
@@ -47,9 +42,9 @@ class Feed extends Component {
             posts:           [ post, ...posts ],
             isPostsFetching: false,
         }));
-    }
+    };
 
-    async _deletePost (id) {
+    _deletePost = async (id) => {
         this._setPostsFetchingState(true);
 
         const { posts } = this.state;
@@ -62,9 +57,9 @@ class Feed extends Component {
             posts:           newPosts,
             isPostsFetching: false,
         });
-    }
+    };
 
-    async _likePost (id) {
+    _likePost = async (id) => {
         const {currentUserFirstName, currentUserLastName} = this.props;
 
         this._setPostsFetchingState(true);
@@ -92,7 +87,7 @@ class Feed extends Component {
             posts:           newPosts,
             isPostsFetching: false,
         });
-    }
+    };
 
     render() {
         const { posts, isPostsFetching } = this.state;
