@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import Styles from './styles.m.css';
-import myContext from '../HOC/withProfile';
+import {withProfile} from '../HOC/withProfile';
 
+@withProfile
 class StatusBar extends Component {
-    static contextType = myContext;
-
     render() {
+        const {avatar, currentUserFirstName, currentUserLastName} = this.props;
+
         return (
             <section className = { Styles.statusBar }>
                 <button>
                     <img
                         alt = 'avatar'
-                        src = { this.context.avatar }
+                        src = { avatar }
                     />
-                    <span>{this.context.currentUserFirstName}</span>
+                    <span>{currentUserFirstName}</span>
                             &nbsp;
-                    <span>{this.context.currentUserLastName}</span>
+                    <span>{currentUserLastName}</span>
                 </button>
             </section>
 

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { func, arrayOf, string, shape } from 'prop-types';
 import Styles from './styles.m.css';
 import cx from 'classnames';
+import { withProfile } from '../HOC/withProfile';
 
+@withProfile
 class Like extends Component {
   static propTypes = {
       _likePost: func.isRequired,
@@ -16,13 +18,9 @@ class Like extends Component {
       ).isRequired,
   };
 
-  constructor(props) {
-      super(props);
-
-      this.state = {
-          showLikers: false,
-      };
-  }
+  state = {
+      showLikers: false,
+  };
 
   _showLikers = () => {
       this.setState({

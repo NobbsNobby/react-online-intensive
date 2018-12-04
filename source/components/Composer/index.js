@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
 import Styles from './styles.m.css';
-import myContext from '../HOC/withProfile';
+import {withProfile} from '../HOC/withProfile';
 import PropTypes from 'prop-types';
 
+
+@withProfile
 class Composer extends Component {
   static propTypes = {
       _createPost: PropTypes.func.isRequired,
   };
 
-  static contextType = myContext;
-
-  constructor(props) {
-      super(props);
-
-      this.state = {
-          comment: '',
-      };
-  }
+  state = {
+      comment: '',
+  };
 
   _updateComment = (event) => {
       this.setState({
@@ -50,17 +46,18 @@ class Composer extends Component {
 
   render() {
       const { comment } = this.state;
+      const {avatar, currentUserFirstName} = this.props;
 
       return (
           <section className = { Styles.composer }>
               <img
                   alt = 'avatar'
-                  src = { this.context.avatar }
+                  src = { avatar }
               />
               <form onSubmit = { this._handleFormSubmit }>
                   <textarea
                       placeholder = { `What\'s on your mind, ${
-                          this.context.currentUserFirstName
+                          currentUserFirstName
                       }?` }
                       value = { comment }
                       onChange = { this._updateComment }

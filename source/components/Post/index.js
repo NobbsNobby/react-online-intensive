@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Styles from './styles.m.css';
-import myContext from '../HOC/withProfile';
+import {withProfile} from '../HOC/withProfile';
 import { func, array, string, number } from 'prop-types';
 import moment from 'moment';
 import Like from '../Like';
 
+@withProfile
 class Post extends Component {
-  static contextType = myContext;
   static propTypes = {
       _deletePost: func.isRequired,
       _likePost:   func.isRequired,
@@ -16,11 +16,6 @@ class Post extends Component {
       id:          string.isRequired,
   };
 
-  constructor(props) {
-      super(props);
-  }
-
-
   _deletePost = () => {
       const { _deletePost, id } = this.props;
       _deletePost(id);
@@ -28,6 +23,7 @@ class Post extends Component {
 
   render() {
       const { comment, created, _likePost, likes, id } = this.props;
+      const { avatar, currentUserFirstName, currentUserLastName } = this.props;
 
       return (
           <section className = { Styles.post }>
@@ -37,10 +33,10 @@ class Post extends Component {
               />
               <img
                   alt = 'avatar'
-                  src = { this.context.avatar }
+                  src = { avatar }
               />
-              <a>{`${this.context.currentUserFirstName} ${
-                  this.context.currentUserLastName
+              <a>{`${currentUserFirstName} ${
+                  currentUserLastName
               }`}
               </a>
               <time>{moment.unix(created).format('MMMM DD hh:mm:ss a')}</time>
@@ -49,7 +45,6 @@ class Post extends Component {
                   _likePost = { _likePost }
                   id = { id }
                   likes = { likes }
-                  { ...this.context }
               />
           </section>
       );

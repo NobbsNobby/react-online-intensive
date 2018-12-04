@@ -6,19 +6,17 @@ import StatusBar from '../StatusBar';
 import Spinner from '../Spinner';
 import moment from 'moment';
 import { getUniqueID, delay } from '../../instruments';
+import { withProfile } from '../HOC/withProfile';
 
-
+@withProfile
 class Feed extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            posts: [
-                {id: '12', comment: 'Hi there', created: moment.now(), likes: []},
-                {id: '45', comment: 'Второй пост', created: moment.now(), likes: []},
-            ],
-            isPostsFetching: false,
-        };
-    }
+    state = {
+        posts: [
+            {id: '12', comment: 'Hi there', created: moment.now(), likes: []},
+            {id: '45', comment: 'Второй пост', created: moment.now(), likes: []},
+        ],
+        isPostsFetching: false,
+    };
 
     _setPostsFetchingState  = (state) => {
         this.setState({
