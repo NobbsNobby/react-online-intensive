@@ -5,8 +5,8 @@ import {myContext} from '../../components/HOC/withProfile';
 
 const options = {
     avatar,
-    currentUserFirstName: 'Lisa',
-    currentUserLastName:  'Simpson',
+    currentUserFirstName: 'Артем',
+    currentUserLastName:  'Котов',
 };
 
 export default class App extends Component {
