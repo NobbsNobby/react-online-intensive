@@ -5,7 +5,6 @@ import { func, array, string, number } from 'prop-types';
 import moment from 'moment';
 import Like from '../Like';
 
-@withProfile
 class Post extends Component {
   static propTypes = {
       _deletePost: func.isRequired,
@@ -60,4 +59,5 @@ class Post extends Component {
   }
 }
 
-export default Post;
+export default withProfile(Post);
+export {Post};

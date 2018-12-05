@@ -8,8 +8,6 @@ import { withProfile } from '../HOC/withProfile';
 import Catcher from '../Catcher';
 import { api, GROUP_ID, TOKEN } from '../../config/api';
 import { socket } from '../../socket/init';
-
-@withProfile
 class Feed extends Component {
   state = {
       posts:           [],
@@ -180,4 +178,5 @@ class Feed extends Component {
   }
 }
 
-export default Feed;
+export default withProfile(Feed);
+export {Feed};

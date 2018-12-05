@@ -4,7 +4,6 @@ import {withProfile} from '../HOC/withProfile';
 import { socket } from '../../socket/init';
 import cx from 'classnames';
 
-@withProfile
 class StatusBar extends Component {
     state = {
         online: false,
@@ -62,4 +61,5 @@ class StatusBar extends Component {
     }
 }
 
-export default StatusBar;
+export default withProfile(StatusBar);
+export {StatusBar};
