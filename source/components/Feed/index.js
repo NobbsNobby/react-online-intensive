@@ -58,26 +58,12 @@ class Feed extends Component {
               }));
           }
       });
-
-      socket.on('unlike', (postJSON) => {
-          const { data: unlikedPost, meta } = JSON.parse(postJSON);
-
-          if (
-              `${currentUserFirstName} ${currentUserLastName}`
-        !== `${meta.authorFirstName} ${meta.authorLastName}`
-          ) {
-              this.setState(({ posts }) => ({
-                  posts: posts.map((post) => post.id === unlikedPost.id ? unlikedPost : post),
-              }));
-          }
-      });
   }
 
   componentWillUnmount() {
       socket.removeListener('create');
       socket.removeListener('remove');
       socket.removeListener('like');
-      socket.removeListener('unlike');
   }
 
   _fetchPosts = async () => {
