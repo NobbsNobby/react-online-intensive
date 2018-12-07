@@ -230,7 +230,7 @@ class Feed extends Component {
                   onExit = { this._animatePostmanExit }>
                   <Postman/>
               </Transition>
-              <TransitionGroup>{postsJSX}</TransitionGroup>
+              <TransitionGroup component = { null }>{postsJSX}</TransitionGroup>
           </section>
       );
   }
