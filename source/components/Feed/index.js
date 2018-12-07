@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Transition } from 'react-transition-group';
+import { Transition, CSSTransition, TransitionGroup } from 'react-transition-group';
 import { fromTo } from 'gsap';
 
 //Components
@@ -178,7 +178,7 @@ class Feed extends Component {
           postman,
           1,
           {opacity: 1, x: 0},
-          {opacity: 0, x: 300, delay: 3},
+          {opacity: 0, x: 300, delay: 2},
       );
   };
 
@@ -186,13 +186,26 @@ class Feed extends Component {
       const { posts, isPostsFetching, postmanState } = this.state;
 
       const postsJSX = posts.map((post) => (
-          <Catcher key = { post.id }>
-              <Post
-                  { ...post }
-                  _deletePost = { this._deletePost }
-                  _likePost = { this._likePost }
-              />
-          </Catcher>
+          <CSSTransition
+              classNames = {{
+                  enter:       Styles.postInStart,
+                  enterActive: Styles.postInEnd,
+                  exit:        Styles.postOutStart,
+                  exitActive:  Styles.postOutEnd,
+              }}
+              key = { post.id }
+              timeout = {{
+                  enter: 500,
+                  exit:  400,
+              }}>
+              <Catcher>
+                  <Post
+                      { ...post }
+                      _deletePost = { this._deletePost }
+                      _likePost = { this._likePost }
+                  />
+              </Catcher>
+          </CSSTransition>
       ));
 
       return (
@@ -209,12 +222,15 @@ class Feed extends Component {
               <Transition
                   appear
                   in = { postmanState }
-                  timeout = { 1000 }
+                  timeout = {{
+                      enter: 1000,
+                      exit:  3000,
+                  }}
                   onEnter = { this._animatePostmanEnter }
                   onExit = { this._animatePostmanExit }>
                   <Postman/>
               </Transition>
-              {postsJSX}
+              <TransitionGroup>{postsJSX}</TransitionGroup>
           </section>
       );
   }
