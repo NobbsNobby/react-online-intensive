@@ -15,6 +15,7 @@ import Postman from '../Postman';
 import Styles from './styles.m.css';
 import { api, GROUP_ID, TOKEN } from '../../config/api';
 import { socket } from '../../socket/init';
+import { delay } from '../../instruments';
 
 
 class Feed extends Component {
@@ -169,8 +170,11 @@ class Feed extends Component {
           postman,
           1,
           {opacity: 0, x: 300},
-          {opacity: 1, x: 0,  onComplete: this._changePostmanState},
+          {opacity: 1, x: 0},
       );
+      setTimeout(() => {
+          this._changePostmanState();
+      }, 2000);
   };
 
   _animatePostmanExit = (postman) => {
@@ -178,7 +182,7 @@ class Feed extends Component {
           postman,
           1,
           {opacity: 1, x: 0},
-          {opacity: 0, x: 300, delay: 2},
+          {opacity: 0, x: 300},
       );
   };
 
