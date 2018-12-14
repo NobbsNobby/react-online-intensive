@@ -6,11 +6,15 @@ describe('instruments:', () => {
     });
 
     test('sum function should throw, when called witch non-number type as first argument', () => {
-        expect(() => { sum('1', 2); }).toThrow();
+        expect(() => {
+            sum('1', 2);
+        }).toThrow();
     });
 
     test('sum function should throw, when called witch non-number type as second argument', () => {
-        expect(() => { sum(1, '2'); }).toThrow();
+        expect(() => {
+            sum(1, '2');
+        }).toThrow();
     });
 
     test('sum function should return an additional of two arguments passed', () => {
@@ -27,7 +31,9 @@ describe('instruments:', () => {
     });
 
     test('getUniqueID function should throw, when called witch non-number type argument', () => {
-        expect(() => { getUniqueID('2'); }).toThrow();
+        expect(() => {
+            getUniqueID('2');
+        }).toThrow();
     });
 
     test('getUniqueID function should produce a string of a desired given length', () => {
@@ -40,11 +46,15 @@ describe('instruments:', () => {
     });
 
     test('getFullApiUrl function should throw, when called witch non-string type as first argument', () => {
-        expect(() => { getFullApiUrl(1, '2'); }).toThrow();
+        expect(() => {
+            getFullApiUrl(1, '2');
+        }).toThrow();
     });
 
     test('getFullApiUrl function should throw, when called witch non-string type as second argument', () => {
-        expect(() => { getFullApiUrl('1', 2); }).toThrow();
+        expect(() => {
+            getFullApiUrl('1', 2);
+        }).toThrow();
     });
 
     test('getFullApiUrl function should return api string', () => {
