@@ -16,6 +16,7 @@ import Styles from './styles.m.css';
 import { api, GROUP_ID, TOKEN } from '../../config/api';
 import { socket } from '../../socket/init';
 import { delay } from '../../instruments';
+import Counter from '../Counter';
 
 
 class Feed extends Component {
@@ -234,6 +235,7 @@ class Feed extends Component {
                   onExit = { this._animatePostmanExit }>
                   <Postman/>
               </Transition>
+              <Counter count = { posts.length }/>
               <TransitionGroup component = { null }>{postsJSX}</TransitionGroup>
           </section>
       );
