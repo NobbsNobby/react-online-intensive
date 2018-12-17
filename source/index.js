@@ -6,11 +6,6 @@ import ReactDOM from 'react-dom';
 import './theme/init';
 
 // App
-import App from './containers/App';
+import App from './HOC/components/Farm';
 
 ReactDOM.render(<App/>, document.getElementById('app'));
-
-
-if (module.hot) {
-    module.hot.accept();
-}
