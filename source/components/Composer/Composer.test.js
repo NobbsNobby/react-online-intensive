@@ -3,8 +3,11 @@ import { mount } from 'enzyme';
 import { Composer } from './index';
 
 const props = {
-    _createPost: jest.fn(),
+    _createPost:          jest.fn(),
+    avatar:               'image.png',
+    currentUserFirstName: 'currentUserFirstName',
 };
+
 const comment = 'Merry christmas!';
 
 const initialState = {
@@ -20,6 +23,8 @@ const result = mount(<Composer { ...props }/>);
 
 const _submitCommentSpy = jest.spyOn(result.instance(), '_submitComment');
 const _handleFormSubmitSpy = jest.spyOn(result.instance(), '_handleFormSubmit');
+const _updateCommentSpy = jest.spyOn(result.instance(), '_updateComment');
+const _submitOnEnterSpy = jest.spyOn(result.instance(), '_submitOnEnter');
 
 
 describe('<Composer> component: ', () => {
@@ -87,12 +92,37 @@ describe('<Composer> component: ', () => {
         expect(result.state()).toEqual(initialState);
     });
 
-    test('_createPost prop should bw invoked once after from submission', () => {
+    test('_createPost prop should be invoked once after from submission', () => {
         expect(props._createPost).toHaveBeenCalledTimes(1);
     });
 
     test('_submitComment and _handleFormSubmit class methods should be invoked once after form is submitted', () => {
         expect(_submitCommentSpy).toHaveBeenCalledTimes(1);
         expect(_handleFormSubmitSpy).toHaveBeenCalledTimes(1);
+    });
+
+    // Props validation
+    test('avatar and currentUserFirstName props is defined', () => {
+        expect(result.props().avatar).toEqual(props.avatar);
+        expect(result.props().currentUserFirstName).toEqual(props.currentUserFirstName);
+    });
+
+    test('props avatar passed on to "img" tag', () => {
+        expect(result.find('img').props().src).toEqual(props.avatar);
+    });
+
+    test('currentUserFirstName avatar passed on to "img" tag', () => {
+        expect(result.find('textarea').props().placeholder).toEqual(`What's on your mind, ${props.currentUserFirstName}?`);
+    });
+
+
+    test('textarea "change" event call "_updateComment" function', () => {
+        expect(_updateCommentSpy).toHaveBeenCalledTimes(1);
+    });
+
+    test('"textarea" keydown', () => {
+        result.find('textarea').simulate('keydown', {key: 'Enter', shift: false});
+        expect(_submitOnEnterSpy).toHaveBeenCalledTimes(1);
+        expect(_submitCommentSpy).toHaveBeenCalledTimes(2);
     });
 });
