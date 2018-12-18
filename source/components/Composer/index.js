@@ -6,7 +6,9 @@ import PropTypes from 'prop-types';
 
 class Composer extends Component {
   static propTypes = {
-      _createPost: PropTypes.func.isRequired,
+      _createPost:          PropTypes.func.isRequired,
+      avatar:               PropTypes.string.isRequired,
+      currentUserFirstName: PropTypes.string.isRequired,
   };
 
   state = {

@@ -15,7 +15,6 @@ import Postman from '../Postman';
 import Styles from './styles.m.css';
 import { api, GROUP_ID, TOKEN } from '../../config/api';
 import { socket } from '../../socket/init';
-import { delay } from '../../instruments';
 import Counter from '../Counter';
 
 
