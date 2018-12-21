@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Transition } from 'react-transition-group';
 import { fromTo } from 'gsap';
+import { Link } from 'react-router-dom';
 //Components
 
 //Instruments
@@ -68,15 +69,14 @@ class StatusBar extends Component {
                         </div>
                         <span/>
                     </div>
-                    <button>
+                    <Link to = '/profile'>
                         <img
                             alt = 'avatar'
                             src = { avatar }
                         />
                         <span>{currentUserFirstName}</span>
-                            &nbsp;
-                        <span>{currentUserLastName}</span>
-                    </button>
+                    </Link>
+                    <Link to = '/feed'>Feed</Link>
                 </section>
             </Transition>
 
