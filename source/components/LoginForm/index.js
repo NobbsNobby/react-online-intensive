@@ -1,19 +1,15 @@
+// Core
 import React, { Component } from 'react';
 
+// Instruments
+import Styles from './styles.m.css';
 class LoginForm extends Component {
     render() {
         return (
-            <div>
+            <div className = { Styles.loginForm }>
                 <form>
-                    <button></button>
-                    <input
-                        placeholder = 'Логин'
-                        type = 'text'
-                    />
-                    <input
-                        placeholder = 'Пароль'
-                        type = 'password'
-                    />
+                    <button>Login</button>
+                    <button disabled>Logout</button>
                 </form>
             </div>
         );

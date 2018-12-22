@@ -5,13 +5,13 @@ import {myContext} from '../../components/HOC/withProfile';
 import Profile from '../../components/Profile';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import StatusBar from '../../components/StatusBar';
-import LoginForm from '../../components/LoginForm';
 
 
 const options = {
     avatar,
     currentUserFirstName: 'Артем',
     currentUserLastName:  'Котов',
+    isAuthenticated:      false,
 };
 
 export default class App extends Component {
@@ -28,11 +28,7 @@ export default class App extends Component {
                         component = { Profile }
                         path = '/profile'
                     />
-                    <Route
-                        component = { LoginForm }
-                        path = '/login'
-                    />
-                    <Redirect to = '/' />
+                    <Redirect to = '/feed' />
                 </Switch>
             </myContext.Provider>
         );
