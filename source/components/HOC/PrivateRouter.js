@@ -12,8 +12,9 @@ export class PrivateRouter extends Component {
 
     render() {
         const { to, path, component } = this.props;
+        const {isAuthenticated} = this.context;
 
-        return this.context.isAuthenticated ? (
+        return isAuthenticated ? (
             <Route
                 component = { component }
                 path = { path }

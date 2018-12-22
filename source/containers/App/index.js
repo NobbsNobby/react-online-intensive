@@ -18,6 +18,7 @@ export default class App extends Component {
                 isAuthenticated: !state.isAuthenticated,
             }));
         };
+
         this.state = {
             avatar,
             currentUserFirstName: 'Артем',
@@ -46,6 +47,7 @@ export default class App extends Component {
                         component = { LoginForm }
                         path = '/login'
                     />
+                    <Redirect to = '/login'/>
                 </Switch>
             </myContext.Provider>
         );
