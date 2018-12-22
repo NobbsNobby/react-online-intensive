@@ -5,30 +5,47 @@ import {myContext} from '../../components/HOC/withProfile';
 import Profile from '../../components/Profile';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import StatusBar from '../../components/StatusBar';
-
-
-const options = {
-    avatar,
-    currentUserFirstName: 'Артем',
-    currentUserLastName:  'Котов',
-    isAuthenticated:      false,
-};
+import { PrivateRouter } from '../../components/HOC/PrivateRouter';
+import LoginForm from '../../components/LoginForm';
+import { aunthHelper } from '../../components/HOC/aunthHelper';
 
 export default class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this._toggleLogin = () => {
+            this.setState((state) => ({
+                isAuthenticated: !state.isAuthenticated,
+            }));
+        };
+        this.state = {
+            avatar,
+            currentUserFirstName: 'Артем',
+            currentUserLastName:  'Котов',
+            isAuthenticated:      aunthHelper('isAuthenticated'),
+            toggleLogin:          this._toggleLogin,
+        };
+    }
+
     render() {
         return (
-            <myContext.Provider value = { options }>
+            <myContext.Provider value = { this.state }>
                 <StatusBar/>
                 <Switch>
-                    <Route
+                    <PrivateRouter
                         component = { Feed }
                         path = '/feed'
+                        to = '/login'
                     />
-                    <Route
+                    <PrivateRouter
                         component = { Profile }
                         path = '/profile'
+                        to = '/login'
                     />
-                    <Redirect to = '/feed' />
+                    <Route
+                        component = { LoginForm }
+                        path = '/login'
+                    />
                 </Switch>
             </myContext.Provider>
         );

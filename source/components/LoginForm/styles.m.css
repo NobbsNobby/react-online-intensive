@@ -6,6 +6,32 @@
     background-color: var(--paletteColor3);
     padding-top: 50px;
 
+    & h1 {
+        font-size: 24px;
+    }
+    & span {
+        position: relative;
+        color: var(--paletteColor4);
+        font-size: 14px;
+        margin-top: 20px;
+        &:before {
+            content: '';
+            position: absolute;
+            right: -15px;
+            top: 2px;
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 5px solid var(--paletteColor4);
+            border-right: 5px solid var(--paletteColor4);
+            border-bottom: 5px solid transparent;
+            border-left: 5px solid transparent;
+            animation: bounce 0.5s ease-out;
+            animation-direction: alternate-reverse;
+            animation-iteration-count: infinite;
+        }
+    }
+
     & button {
         color: white;
         border: 1px solid var(--paletteColor7);
@@ -21,5 +47,16 @@
             color: var(--paletteColor7);
             background-color: transparent;
         }
+    }
+}
+
+
+@keyframes bounce {
+    from {
+        transform: translateX(0) translateY(0);
+    }
+
+    to {
+        transform: translateX(3px) translateY(-3px);
     }
 }
