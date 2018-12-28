@@ -5,49 +5,78 @@ import {myContext} from '../../components/HOC/withProfile';
 import Profile from '../../components/Profile';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import StatusBar from '../../components/StatusBar';
-import { PrivateRouter } from '../../components/HOC/PrivateRouter';
 import LoginForm from '../../components/LoginForm';
-import { aunthHelper } from '../../components/HOC/aunthHelper';
+
 
 export default class App extends Component {
-    constructor(props) {
-        super(props);
+    state = {
+        avatar,
+        currentUserFirstName: 'Артем',
+        currentUserLastName:  'Котов',
+        isAuthenticated:      false,
+    };
 
-        this._toggleLogin = () => {
-            this.setState((state) => ({
-                isAuthenticated: !state.isAuthenticated,
-            }));
-        };
-
-        this.state = {
-            avatar,
-            currentUserFirstName: 'Артем',
-            currentUserLastName:  'Котов',
-            isAuthenticated:      aunthHelper('isAuthenticated'),
-            toggleLogin:          this._toggleLogin,
-        };
+    componentDidMount() {
+        this._getInitialAuthState();
     }
 
+    _getInitialAuthState = () => {
+        const key = 'isAuthenticated';
+        const localKey = localStorage.getItem(key);
+        if (localKey === null) {
+            localStorage.setItem(key, 'false');
+        }
+        if (localKey === 'false') {
+            this.setState({isAuthenticated: false});
+        }
+        if (localKey === 'true') {
+            this.setState({isAuthenticated: true});
+        }
+    };
+
+    _login = () => {
+        this.setState({
+            isAuthenticated: true,
+        }, () => {
+            localStorage.setItem('isAuthenticated', 'true');
+        });
+    };
+
+    _logout = () => {
+        this.setState({
+            isAuthenticated: false,
+        }, () => {
+            localStorage.setItem('isAuthenticated', 'false');
+        });
+    };
+
     render() {
+        const {isAuthenticated} = this.state;
+
         return (
             <myContext.Provider value = { this.state }>
-                <StatusBar/>
+                <StatusBar _logout = { this._logout }/>
                 <Switch>
-                    <PrivateRouter
+                    <Route
+                        path = '/login'
+                        render = { (props) => (
+                            <LoginForm
+                                _login = { this._login }
+                                isAuthenticated = { isAuthenticated }
+                                { ...props }
+                            />
+                        ) }
+                    />
+                    {!isAuthenticated && <Redirect to = '/login'/>}
+                    <Route
                         component = { Feed }
                         path = '/feed'
-                        to = '/login'
-                    />
-                    <PrivateRouter
-                        component = { Profile }
-                        path = '/profile'
-                        to = '/login'
                     />
                     <Route
-                        component = { LoginForm }
-                        path = '/login'
+                        component = { Profile }
+                        path = '/profile'
                     />
-                    <Redirect to = '/login'/>
+                    <Redirect to = '/feed'/>
                 </Switch>
             </myContext.Provider>
         );

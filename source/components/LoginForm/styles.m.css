@@ -33,10 +33,11 @@
     }
 
     & button {
+        margin-top: 20px;
         color: white;
         border: 1px solid var(--paletteColor7);
         border-radius: 4px;
-        padding: 6px 12px;
+        padding: 9px 18px;
         background-color: var(--paletteColor7);
         cursor: pointer;
         &:not(:last-child) {

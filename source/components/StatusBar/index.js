@@ -68,10 +68,9 @@ class StatusBar extends Component {
                       <span>{currentUserFirstName}</span>
                   </Link>
                   <Link to = '/feed'>Feed</Link>
-
-                  <div className = { Styles.loginBtn }>
-                      <button onClick = { this.props.toggleLogin }>
-                          {this.props.isAuthenticated ? 'Выйти' : 'Войти'}
+                  <div>
+                      <button onClick = { this.props._logout }>
+                          Выйти
                       </button>
                   </div>
               </section>

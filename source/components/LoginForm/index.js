@@ -5,11 +5,30 @@ import React, { Component } from 'react';
 import Styles from './styles.m.css';
 
 class LoginForm extends Component {
+    componentDidMount() {
+        const { isAuthenticated, history } = this.props;
+
+        if (isAuthenticated) {
+            history.replace('/feed');
+        }
+    }
+
+    _login = () => {
+        const {history, _login } = this.props;
+        _login();
+        history.replace('/feed');
+    };
+
+
     render() {
         return (
             <div className = { Styles.loginForm }>
                 <h1>Вы должны войти в систему</h1>
-                <span>Это вооон та кнопка справа вверху</span>
+                <div>
+                    <button onClick = { this._login }>
+                        Войти
+                    </button>
+                </div>
             </div>
         );
     }

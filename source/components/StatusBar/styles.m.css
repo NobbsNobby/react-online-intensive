@@ -9,7 +9,8 @@
     border-bottom: #29487d;
     background-color: #4267b2;
 
-    & a {
+    & a,
+    & button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -78,19 +79,5 @@
             background: #f40009;
             box-shadow: 0 0 2px #f40009;
         }
-    }
-
-    & .loginBtn {
-        position: absolute;
-        right: 7px;
-        & button {
-            color: var(--paletteColor8);
-            padding: 3px 12px;
-            background-color: #fff;
-            border: 1px solid var(--paletteColor2);
-            border-radius: 4px;
-            outline: none;
-        }
-
     }
 }
